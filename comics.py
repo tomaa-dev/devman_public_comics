@@ -44,7 +44,7 @@ def main():
     parser.add_argument('--directory', type=str, default=default_directory)
     args = parser.parse_args()
     directory = args.directory
-    create_directory(directory)
+    os.makedirs(directory, exist_ok=True)
 
     load_dotenv()
     tg_comics_token = os.environ["TELEGRAM_COMICS_TOKEN"]

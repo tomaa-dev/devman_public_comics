@@ -2,10 +2,6 @@ import os
 from urllib.parse import urlsplit, unquote
 
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)
-
-
 def download_the_image(response, filepath):
     with open(filepath, 'wb') as file:
         file.write(response.content)
