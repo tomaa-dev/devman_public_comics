@@ -23,9 +23,17 @@ def fetch_random_comic(random_number, directory):
     response_comic_image = requests.get(filename_url)
     response_comic_image.raise_for_status()
 
-    save_response_content(response_comic_image, filepath_to_comics)
-
-    return filename, comment
+    try:
+        save_response_content(response_comic_image, filepath_to_comics)
+        # raise ValueError('ok')
+        return filename, comment
+    except Exception:
+        if os.path.exists(filepath_to_comics):
+            try:
+                os.remove(filepath_to_comics)
+            except Exception:
+                pass
+        raise
 
 
 def publish_for_telegram(directory, photo, comment, tg_comics_token, tg_chat_id):
@@ -51,8 +59,12 @@ def main():
 
     random_number = random.randint(1, comics_amount)
     filename, comment = fetch_random_comic(random_number, directory)
-    filepath_to_comics = publish_for_telegram(directory, filename, comment, tg_comics_token, tg_chat_id)
-    os.remove(filepath_to_comics)
+    filepath_to_comics = os.path.join(directory, filename)
+
+    try:
+        publish_for_telegram(directory, filename, comment, tg_comics_token, tg_chat_id)
+    finally:
+        os.remove(filepath_to_comics)
 
 
 if __name__ == '__main__':
