@@ -34,7 +34,7 @@ def publish_for_telegram(directory, photo, comment, tg_comics_token, tg_chat_id)
     filepath_to_comics = os.path.join(directory, photo)
     bot.send_document(chat_id=tg_chat_id, document=open(filepath_to_comics, 'rb'))
     bot.send_message(chat_id=tg_chat_id, text=comment)
-    os.remove(filepath_to_comics)
+    return filepath_to_comics
 
 
 def main():
@@ -57,7 +57,8 @@ def main():
 
     random_number = random.randint(1, comics_amount)
     filename, comment = fetch_random_comic(random_number, directory)
-    publish_for_telegram(directory, filename, comment, tg_comics_token, tg_chat_id)
+    filepath_to_comics = publish_for_telegram(directory, filename, comment, tg_comics_token, tg_chat_id)
+    os.remove(filepath_to_comics)
 
 
 if __name__ == '__main__':
