@@ -12,10 +12,10 @@ def fetch_random_comic(random_number, directory):
 
     response = requests.get(url)
     response.raise_for_status()
-    comics = response.json()
+    comic = response.json()
 
-    filename_url = comics['img']
-    comment = comics['alt']
+    filename_url = comic['img']
+    comment = comic['alt']
 
     file_extension = get_file_extension(filename_url)
     filename = f'comic{random_number}{file_extension}'
