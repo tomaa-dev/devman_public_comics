@@ -2,7 +2,7 @@ import os
 from urllib.parse import urlsplit, unquote
 
 
-def download_the_image(response, filepath):
+def save_response_content(response, filepath):
     with open(filepath, 'wb') as file:
         file.write(response.content)
 
