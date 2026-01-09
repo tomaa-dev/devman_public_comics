@@ -4,7 +4,7 @@ import telegram
 import random
 import argparse
 from dotenv import load_dotenv 
-from image_downloader import create_directory, download_the_image, get_file_extension
+from image_downloader import download_the_image, get_file_extension
 
 
 def fetch_random_comic(random_number, directory):
