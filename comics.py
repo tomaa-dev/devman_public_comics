@@ -2,7 +2,6 @@ import requests
 import os
 import telegram
 import random
-import argparse
 from dotenv import load_dotenv 
 from image_downloader import save_response_content, get_file_extension
 
@@ -38,12 +37,7 @@ def publish_for_telegram(directory, photo, comment, tg_comics_token, tg_chat_id)
 
 
 def main():
-    default_directory = os.path.join(os.path.dirname(__file__), 'images')
-
-    parser = argparse.ArgumentParser(description="""Скачивает случайный комикс и публикует её в канал.""")
-    parser.add_argument('--directory', type=str, default=default_directory)
-    args = parser.parse_args()
-    directory = args.directory
+    directory = os.path.join(os.path.dirname(__file__), 'images')
     os.makedirs(directory, exist_ok=True)
 
     load_dotenv()

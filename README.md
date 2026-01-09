@@ -16,12 +16,6 @@ pip install -r requirements.txt
 python comics.py 
 ```
 
-или в указанную директорию:
-
-```
-python comics.py С:\path\to\your\project
-```
-
 [![comic.gif](https://i.postimg.cc/QN5qzLQj/comic.gif)](https://postimg.cc/MX6RcF3L)
 
 Публикация случайного комикса и комментария к нему в канал выглядит следующим образом:
